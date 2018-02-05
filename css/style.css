@@ -6,13 +6,19 @@
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	padding: 0;
 }
 
 #display{
-	margin-left: auto;
-	margin-right: auto;
 	width: 90%;
+	height: 50px;
+	border: 20px solid;
+	border-color: #EEEEEE;
+	background-color: #A3A8A5;
+	color: black;
+	margin: 0 auto 0 auto;
+	text-align: center;
+	vertical-align: center;
+	line-height: 50px;
 }
 
 #buttons{
@@ -22,5 +28,5 @@
 .button{
 	text-align: center;
 	width: 100px; height: 100px;
-	margin: 10px;
+	margin: 9px;
 }
