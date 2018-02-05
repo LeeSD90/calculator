@@ -43,12 +43,12 @@ function clear(){
 
 function buttonPressed(e){
 	let button = e.target.value;
-
 	if(button === 'Clear'){
 
 			clear();
 
 	}
+	else if(button === 'calculator'){ console.log("hey");}
 	else if(button === '+' || 
 			button === '-' ||
 			button === '*' ||
@@ -61,11 +61,12 @@ function buttonPressed(e){
 
 		operate(operator, storedValue, displayValue.innerHTML);
 
+	} else if(isNaN(button)){
+		return;
 	} else{
 
 		if(displayValue.innerHTML === "0" || isNaN(displayValue.innerHTML)) { displayValue.innerHTML = ""; }
 		displayValue.innerHTML += button;
-
 	}
 
 }
