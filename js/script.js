@@ -23,7 +23,7 @@ function divide(num1, num2){
 function operate(operator, num1, num2){
 	switch(operator){
 		case '+':
-			return add(num1, num2);
+			return add(Number(num1), Number(num2));
 		case '-':
 			return subtract(num1, num2);
 		case '*':
@@ -37,8 +37,14 @@ function updateDisplay(value){
 	document.getElementById('display').innerHTML += value;
 }
 
+function display(value){
+	document.getElementById('display').innerHTML = value;
+}
+
 function clear(){
 	displayValue.innerHTML = 0;
+	operator = "";
+	storedValue = 0;
 }
 
 function buttonPressed(e){
@@ -47,19 +53,18 @@ function buttonPressed(e){
 
 			clear();
 
-	}
-	else if(button === 'calculator'){ console.log("hey");}
-	else if(button === '+' || 
+	} else if(button === '+' || 
 			button === '-' ||
 			button === '*' ||
 			button === '/'){
-		displayValue.innerHTML = button;
+
 		storedValue = displayValue.innerHTML;
+		displayValue.innerHTML = button;
 		operator = button;
 
 	} else if(button === '='){
 
-		operate(operator, storedValue, displayValue.innerHTML);
+		display(operate(operator, storedValue, displayValue.innerHTML));
 
 	} else if(isNaN(button)){
 		return;
