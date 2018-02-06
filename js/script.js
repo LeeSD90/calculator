@@ -45,6 +45,7 @@ function clear(){
 	displayValue.innerHTML = 0;
 	operator = "";
 	storedValue = 0;
+	total = 0;
 }
 
 function buttonPressed(e){
@@ -58,13 +59,21 @@ function buttonPressed(e){
 			button === '*' ||
 			button === '/'){
 
-		storedValue = displayValue.innerHTML;
-		displayValue.innerHTML = button;
-		operator = button;
+		if(storedValue === 0){
+			storedValue = displayValue.innerHTML;
+			displayValue.innerHTML = button;
+			operator = button;
+		} else{
+			storedValue = operate(operator, storedValue, displayValue.innerHTML);
+			displayValue.innerHTML = button;
+			operator = button;
+		}
 
 	} else if(button === '='){
 
 		display(operate(operator, storedValue, displayValue.innerHTML));
+		operator = "";
+		storedValue = 0;
 
 	} else if(isNaN(button)){
 		return;
