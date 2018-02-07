@@ -33,7 +33,7 @@ function operate(operator, num1, num2){
 }
 
 function setDisplay(value){
-	if(isNaN(value)){ document.getElementById('display').innerHTML = value; }
+	if(typeof value === 'string'){ console.log(value); document.getElementById('display').innerHTML = value; }
 	else document.getElementById('display').innerHTML = +value.toFixed(6);
 }
 
@@ -71,11 +71,15 @@ function buttonPressed(e){
 	} else if(button === '='){
 		if(operator !== "" && storedValue !== 0){
 			if(operator === '/' && getDisplay() === '0'){
-				setDisplay("Trying to implode the universe are you? You can't divide by zero!");
+				setDisplay("*Universe implodes*");
+				operator = "";
+				storedValue = 0;
+			} else{
+				setDisplay(operate(operator, storedValue, displayValue.innerHTML));
+				operator = "";
+				storedValue = 0;
 			}
-			setDisplay(operate(operator, storedValue, displayValue.innerHTML));
-			operator = "";
-			storedValue = 0;
+
 		} else return;
 	} else if(isNaN(button)){
 		return;
