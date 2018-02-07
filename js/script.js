@@ -1,8 +1,7 @@
 let displayValue = document.getElementById('display');
 let buttons = document.getElementById("buttons");
-let storedValue;
+let storedValue = 0;
 let operator;
-let total;
 
 function add(num1, num2){
 	return num1 + num2;
@@ -33,19 +32,19 @@ function operate(operator, num1, num2){
 	}
 }
 
-function updateDisplay(value){
-	document.getElementById('display').innerHTML += value;
+function setDisplay(value){
+	if(isNaN(value)){ document.getElementById('display').innerHTML = value; }
+	else document.getElementById('display').innerHTML = +value.toFixed(6);
 }
 
-function display(value){
-	document.getElementById('display').innerHTML = value;
+function getDisplay(){
+	return document.getElementById('display').innerHTML;
 }
 
 function clear(){
 	displayValue.innerHTML = 0;
 	operator = "";
 	storedValue = 0;
-	total = 0;
 }
 
 function buttonPressed(e){
@@ -70,15 +69,17 @@ function buttonPressed(e){
 		}
 
 	} else if(button === '='){
-
-		display(operate(operator, storedValue, displayValue.innerHTML));
-		operator = "";
-		storedValue = 0;
-
+		if(operator !== "" && storedValue !== 0){
+			if(operator === '/' && getDisplay() === '0'){
+				setDisplay("Trying to implode the universe are you? You can't divide by zero!");
+			}
+			setDisplay(operate(operator, storedValue, displayValue.innerHTML));
+			operator = "";
+			storedValue = 0;
+		} else return;
 	} else if(isNaN(button)){
 		return;
 	} else{
-
 		if(displayValue.innerHTML === "0" || isNaN(displayValue.innerHTML)) { displayValue.innerHTML = ""; }
 		displayValue.innerHTML += button;
 	}
