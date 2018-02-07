@@ -82,7 +82,11 @@ function buttonPressed(e){
 
 		} else return;
 	} else if(isNaN(button)){
-		return;
+		if(button == '.'){
+			if(isNaN(displayValue.innerHTML)) { displayValue.innerHTML = ""; }
+			displayValue.innerHTML += button;
+		}
+		else return;
 	} else{
 		if(displayValue.innerHTML === "0" || isNaN(displayValue.innerHTML)) { displayValue.innerHTML = ""; }
 		displayValue.innerHTML += button;
